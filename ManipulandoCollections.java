@@ -14,59 +14,32 @@ public class ManipulandoCollections {
 		Pessoas p3 = new Pessoas((long) 3,"p3", 123456, "role_adm");
 		Pessoas p4 = new Pessoas((long) 4,"p4", 1234567, "role_user");
 		Pessoas p5 = new Pessoas((long) 2,"p5", 12345678, "role_user");
+		Pessoas p6 = new Pessoas((long) 6,"p6", 123456789, "role_adm");
 		
-		List<Pessoas> listaEmbaralhada = new ArrayList<Pessoas>();
-
-		List<Pessoas> listaInicial = new ArrayList<Pessoas>();
-		listaInicial.add(p1);
-		listaInicial.add(p2);
-		listaInicial.add(p4);
-		listaInicial.add(p5);
-		listaInicial.add(p3);
+		List<Pessoas> lista1 = new ArrayList<Pessoas>();
+		lista1.add(p1);
+		lista1.add(p4);
+		lista1.add(p3);
+		lista1.add(p6);
 		
-		System.out.println("---------Lista inicial-------------");
-		//filtra atraves da presenca do 'role_user' e adiciona sem ordem na listaEmbaralhada
-		listaInicial.forEach(i -> {
-			if(i.getRole().contains("role_user"))
-				listaEmbaralhada.add(i);		
-			System.out.println(i);
-		});
+		List<Pessoas> lista2 = new ArrayList<Pessoas>();
+		lista2.add(p1);
+		lista2.add(p2);
+		lista2.add(p4);
+		lista2.add(p5);
+		lista2.add(p3);
 		
-		System.out.println("---------Lista embaralhada-------------");
-		listaEmbaralhada.forEach(i ->{
-			System.out.println(i);	
-		});
+		List<Pessoas> lista3 = new ArrayList<Pessoas>();
+		lista3.add(p6);
+				
+		 System.out.println("é lista1 disjunta a lista2 : " +
+                 Collections.disjoint(lista1, lista2)); //contem elementos semelhantes : false
+		 
+		 System.out.println("é lista1 disjunta a lista3 : " +
+                 Collections.disjoint(lista1, lista3)); //contem elementos semelhantes : false
+		 
+		 System.out.println("é lista2 disjunta a lista3 : " +
+                 Collections.disjoint(lista2, lista3)); //nao contem elementos semelhantes : true
 		
-		System.out.println("---------Lista decrescente-------------");
-		//mostra a lista decrescente 
-		List<Pessoas> dcL = decrescenteLista(listaEmbaralhada);
-		dcL.forEach(i -> {
-			System.out.println(i);
-		});
-		
-		System.out.println("-----------Lista crescente-----------");
-		//mostra a lista crescente corrigindo o id de cada elemento ordenadamente
-		List<Pessoas> cL = crescenteLista(listaEmbaralhada);
-		cL.forEach(i -> {
-			cL.forEach(j -> {
-				if(cL.indexOf(i) != j.getId())
-					i.setId((long) cL.indexOf(i)+1);
-			});
-			System.out.println(i);
-		});
-	}
-	
-	public static List<Pessoas> crescenteLista(List<Pessoas> ps){
-	    return ps.stream().sorted((p1, p2) -> 
-	            p1.getSenha()
-	           .compareTo(p2.getSenha()))
-	           .collect(Collectors.toList());
-	}
-	
-	public static List<Pessoas> decrescenteLista(List<Pessoas> ps) {
-		Collections.sort(ps, Collections.reverseOrder((p1, p2) -> 
-		p1.getSenha()
-		.compareTo(p2.getSenha())));
-		return ps;
 	}
 }
