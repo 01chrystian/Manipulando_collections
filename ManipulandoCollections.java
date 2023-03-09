@@ -18,28 +18,16 @@ public class ManipulandoCollections {
 		
 		List<Pessoas> lista1 = new ArrayList<Pessoas>();
 		lista1.add(p1);
+		lista1.add(p2);
 		lista1.add(p4);
+		lista1.add(p5);
 		lista1.add(p3);
 		lista1.add(p6);
+		lista1.add(p1);
 		
-		List<Pessoas> lista2 = new ArrayList<Pessoas>();
-		lista2.add(p1);
-		lista2.add(p2);
-		lista2.add(p4);
-		lista2.add(p5);
-		lista2.add(p3);
+		int freq = Collections.frequency(lista1, p1);
 		
-		List<Pessoas> lista3 = new ArrayList<Pessoas>();
-		lista3.add(p6);
-				
-		 System.out.println("é lista1 disjunta a lista2 : " +
-                 Collections.disjoint(lista1, lista2)); //contem elementos semelhantes : false
-		 
-		 System.out.println("é lista1 disjunta a lista3 : " +
-                 Collections.disjoint(lista1, lista3)); //contem elementos semelhantes : false
-		 
-		 System.out.println("é lista2 disjunta a lista3 : " +
-                 Collections.disjoint(lista2, lista3)); //nao contem elementos semelhantes : true
+		 System.out.println(freq);  // 2
 		
 	}
 }
